@@ -19,12 +19,9 @@
   "devDependencies": {
     "brfs": "^2.0.0",
     "browserify": "^16.2.2",
-    "from2-buffer": "^1.0.0",
-    "simple-concat": "^1.0.0",
     "standard": "^11.0.0",
     "tap-spec": "^5.0.0",
     "tape": "^4.0.0",
-    "tape-run": "^4.0.0",
     "tinyify": "^2.4.3"
   },
   "homepage": "https://github.com/goto-bus-stop/inflate-raw",
@@ -42,9 +39,7 @@
   },
   "scripts": {
     "build": "browserify worker/worker -p tinyify -o worker/bundle.js && brfs worker/index.js > browser-worker.js",
-    "test": "standard && npm run test:server && npm run test:browser",
-    "test:server": "node test | tap-spec",
-    "test:browser": "npm run build && browserify test/browser -t brfs | tape-run | tap-spec"
+    "test": "standard && node test | tap-spec"
   },
   "dependencies": {
     "pako": "^1.0.6"
