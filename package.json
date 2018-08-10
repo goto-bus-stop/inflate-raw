@@ -1,0 +1,47 @@
+{
+  "name": "inflate-raw",
+  "description": "decompress a raw DEFLATE buffer or stream in node and the browser",
+  "version": "0.0.0",
+  "author": "Renée Kooi <renee@kooi.me>",
+  "bugs": {
+    "url": "https://github.com/goto-bus-stop/inflate-raw/issues"
+  },
+  "files": [
+    "/*.md",
+    "/*.js",
+    "test"
+  ],
+  "browser": {
+    "./index.js": "./browser.js",
+    "./stream.js": "./browser-stream.js",
+    "./worker.js": "./browser-worker.js"
+  },
+  "devDependencies": {
+    "brfs": "^2.0.0",
+    "browserify": "^16.2.2",
+    "standard": "^11.0.0",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.0.0",
+    "tinyify": "^2.4.3"
+  },
+  "homepage": "https://github.com/goto-bus-stop/inflate-raw",
+  "keywords": [
+    "browserify",
+    "deflate",
+    "inflate",
+    "zlib"
+  ],
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/goto-bus-stop/inflate-raw.git"
+  },
+  "scripts": {
+    "build": "browserify worker/worker -p tinyify -o worker/bundle.js && brfs worker/index.js > browser-worker.js",
+    "test": "standard && node test | tap-spec"
+  },
+  "dependencies": {
+    "pako": "^1.0.6"
+  }
+}
