@@ -1,5 +1,5 @@
 var Inflate = require('pako/lib/inflate').Inflate
-var through = require('through2')
+var Transform = require('stream').Transform
 
 function InflateError (inflater) {
   Error.call(inflater.msg)
@@ -10,19 +10,19 @@ InflateError.prototype.constructor = InflateError
 
 module.exports = function createInflateRaw () {
   var inflater = Inflate({ raw: true })
-  var stream = through(onwrite, onend)
+  var stream = new Transform()
   inflater.onData = function (chunk) {
     stream.push(chunk)
   }
   inflater.onEnd = function (status) {
     stream.push(null)
   }
-  function onwrite (chunk, enc, cb) {
+  stream._transform = function (chunk, enc, cb) {
     inflater.push(chunk, false)
     if (inflater.err) return cb(new InflateError(inflater))
     cb()
   }
-  function onend (cb) {
+  stream._flush = function (cb) {
     inflater.push(new Uint8Array(0), true)
     if (inflater.err) return cb(new InflateError(inflater))
   }

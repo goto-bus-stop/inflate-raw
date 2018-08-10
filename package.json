@@ -3,18 +3,16 @@
   "description": "decompress a raw DEFLATE buffer or stream in node and the browser",
   "version": "0.0.0",
   "author": "Renée Kooi <renee@kooi.me>",
-  "bugs": {
-    "url": "https://github.com/goto-bus-stop/inflate-raw/issues"
-  },
-  "files": [
-    "/*.md",
-    "/*.js",
-    "test"
-  ],
   "browser": {
     "./index.js": "./browser.js",
     "./stream.js": "./browser-stream.js",
     "./worker.js": "./browser-worker.js"
+  },
+  "bugs": {
+    "url": "https://github.com/goto-bus-stop/inflate-raw/issues"
+  },
+  "dependencies": {
+    "pako": "^1.0.6"
   },
   "devDependencies": {
     "brfs": "^2.0.0",
@@ -27,6 +25,11 @@
     "tape-run": "^4.0.0",
     "tinyify": "^2.4.3"
   },
+  "files": [
+    "/*.md",
+    "/*.js",
+    "test"
+  ],
   "homepage": "https://github.com/goto-bus-stop/inflate-raw",
   "keywords": [
     "browserify",
@@ -43,10 +46,7 @@
   "scripts": {
     "build": "browserify worker/worker -p tinyify -o worker/bundle.js && brfs worker/index.js > browser-worker.js",
     "test": "standard && npm run test:server && npm run test:browser",
-    "test:server": "node test | tap-spec",
-    "test:browser": "npm run build && browserify test/browser -t brfs | tape-run | tap-spec"
-  },
-  "dependencies": {
-    "pako": "^1.0.6"
+    "test:browser": "npm run build && browserify test/browser -t brfs | tape-run | tap-spec",
+    "test:server": "node test | tap-spec"
   }
 }
