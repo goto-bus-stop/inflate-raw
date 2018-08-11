@@ -1,7 +1,7 @@
 {
   "name": "inflate-raw",
   "description": "decompress a raw DEFLATE buffer or stream in node and the browser",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "author": "Renée Kooi <renee@kooi.me>",
   "browser": {
     "./index.js": "./browser.js",
