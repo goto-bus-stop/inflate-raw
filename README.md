@@ -34,13 +34,9 @@ var inflateRawStream = require('inflate-raw/stream')
 someCompressedStream
   .pipe(inflateRawStream())
   .pipe(elsewhere)
-
-var inflateRawWorker = require('inflate-raw/worker')
-inflateRawWorker(compressedBuffer, function (err, uncompressedBuffer) {
-})
 ```
 
-In the browser, the main `inflate-raw` entry point is blocking, so if you inflate a very large buffer the browser may hang. You can use `inflate-raw/worker` instead which has the same API, but offloads the inflating to a Web Worker. Note that you _cannot_ use `compressedBuffer` while inflation is in progress, because it is moved into the worker rather than copied. If you need to use the `compressedBuffer`, manually copy it first. After inflation, the `compressedBuffer` is moved back to the main thread, so you can use it again.
+In the browser, the main `inflate-raw` entry point is blocking, so if you inflate a very large buffer the browser may hang. If it does, you may want to use something like [webworkify](https://github.com/browserify/webworkify) and do the inflating in a Worker.
 
 The `inflate-raw/stream` API is also synchronous but if the data comes streaming in in small chunks it will not noticeably lag the browser. It exposes a node-style stream transform interface.
 

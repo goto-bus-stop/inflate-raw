@@ -5,8 +5,7 @@
   "author": "Renée Kooi <renee@kooi.me>",
   "browser": {
     "./index.js": "./browser.js",
-    "./stream.js": "./browser-stream.js",
-    "./worker.js": "./browser-worker.js"
+    "./stream.js": "./browser-stream.js"
   },
   "bugs": {
     "url": "https://github.com/goto-bus-stop/inflate-raw/issues"
@@ -22,8 +21,7 @@
     "standard": "^11.0.0",
     "tap-spec": "^5.0.0",
     "tape": "^4.0.0",
-    "tape-run": "^4.0.0",
-    "tinyify": "^2.4.3"
+    "tape-run": "^4.0.0"
   },
   "files": [
     "/*.md",
@@ -44,9 +42,8 @@
     "url": "https://github.com/goto-bus-stop/inflate-raw.git"
   },
   "scripts": {
-    "build": "browserify worker/worker -p tinyify -o worker/bundle.js && brfs worker/index.js > browser-worker.js",
     "test": "standard && npm run test:server && npm run test:browser",
-    "test:browser": "npm run build && browserify test/browser -t brfs | tape-run | tap-spec",
+    "test:browser": "browserify test/browser -t brfs | tape-run | tap-spec",
     "test:server": "node test | tap-spec"
   }
 }
