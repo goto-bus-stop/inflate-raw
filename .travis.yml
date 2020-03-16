@@ -4,11 +4,16 @@ node_js:
   - 10
   - 8
   - 6
-  - 4
 
 script:
   - npm run test:server
   - xvfb-run --auto-servernum npm run test:browser
+
+jobs:
+  include:
+    - node_js: 4
+      script:
+        - npm run test:server
 
 services:
   - xvfb
