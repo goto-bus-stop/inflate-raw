@@ -20,7 +20,7 @@
     "simple-concat": "^1.0.0",
     "standard": "^14.3.3",
     "tap-spec": "^5.0.0",
-    "tape": "^4.11.0",
+    "tape": "^5.0.0",
     "tape-run": "^7.0.0"
   },
   "files": [
