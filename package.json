@@ -18,7 +18,7 @@
     "browserify": "^17.0.0",
     "from2-buffer": "^1.0.0",
     "simple-concat": "^1.0.0",
-    "standard": "^15.0.0",
+    "standard": "^16.0.2",
     "tap-spec": "^5.0.0",
     "tape": "^5.0.0",
     "tape-run": "^7.0.0"
